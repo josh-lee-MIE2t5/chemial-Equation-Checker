@@ -1,0 +1,34 @@
+{
+  "name": "spawner",
+  "description": "A fluent interface for launching child processes in Node",
+  "keywords": [
+    "child_process",
+    "wrapper",
+    "fluent"
+  ],
+  "version": "0.0.1",
+  "homepage": "https://CharlotteGore@github.com/CharlotteGore/Spawner.git",
+  "author": {
+    "name": "Charlotte Gore",
+    "email": "conspiracygore@gmail.com",
+    "url": "http://charlottegore.com/"
+  },
+  "contributors": [
+    {
+      "name": "Charlotte Gore",
+      "email": "conspiracygore@gmail.com",
+      "url": "http://charlottegore.com/"
+    }
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "main": "index",
+  "directories": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CharlotteGore/Spawner.git"
+  }
+}

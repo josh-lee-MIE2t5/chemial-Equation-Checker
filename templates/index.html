@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+    <button class="btn">Light</button>
+</div>
+
+<h2>Enter your equation to be checked</h2>
+<form action="" method="POST">
+    <p>
+        {{form.reactantsStr.label}}<br>
+        {{form.reactantsStr(size=100)}}
+    </p>
+    <p>
+        {{form.productsStr.label}}<br>
+        {{form.productsStr(size=100)}}
+    </p>
+    <p>{{form.equationCheck}}</p>
+
+</form>
+
+
+{% endblock content %}
