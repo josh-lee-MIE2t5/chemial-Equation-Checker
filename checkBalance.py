@@ -8,6 +8,8 @@
 #          in a dictionary
 ######################################################
 
+
+
 def mol_form(compound_formula):
     """(str) -> dictionary
     When passed a string of the compound formula, returns a dictionary 
@@ -19,85 +21,322 @@ def mol_form(compound_formula):
     {'C': 1, 'H': 4}
     """
     # TODO your code here
-    i = 0
+  
     result = {}
-    while i < len(compound_formula):
-        if compound_formula[i] in result:
-            if compound_formula[i].isupper():
-                if i == len(compound_formula)-1:
-                    result[compound_formula[i]]+=1
-                    i+=1
-                elif compound_formula[i].isnumeric():
-                    if i + 1 == len(compound_formula)-1:
-                        result[compound_formula[i]] += int(compound_formula[i+1])
-                        i+=2
-                    else:
-                        if compound_formula[i+2].isnumeric():
-                            result[compound_formula[i]] += int(compound_formula[i+1]+compound_formula[i+2])
-                            i+=3
-                        else:
-                            result[compound_formula[i]] += int(compound_formula[i+1])
-                            i+=2
-                elif compound_formula[i].isnumeric() == False:
-                    if compound_formula[i].islower():
-                        if i+1 == len(compound_formula)-1:
-                            result[compound_formula[i]] += 1
-                            i+=2
-                        elif compound_formula[i+2].isnumeric() == False:
-                            result[compound_formula[i]] += 1
-                            i+=2
-                        elif compound_formula[i+2].isnumeric():
-                            if i+2 == len(compound_formula)-1:
-                                result[compound_formula[i]] += int(compound_formula[i+2])
-                                i+=3
-                            elif compound_formula[i+3].isnumeric() == False:
-                                result[compound_formula[i]] += int(compound_formula[i+2])
-                                i+=3
-                            elif compound_formula[i+3].isnumeric():
-                                result[compound_formula[i]] += int(compound_formula[i+2]+compound_formula[i+3])
-                                i+=4
-                    elif compound_formula[i+1].isupper():
-                        result[compound_formula[i]] += 1
-                        i+=1          
-        else: 
-            if compound_formula[i].isupper():
-                if i == len(compound_formula)-1:
-                    result[compound_formula[i]]=1
-                    i+=1
-                elif compound_formula[i+1].isnumeric():
-                    if i + 1 == len(compound_formula)-1:
-                        result[compound_formula[i]] = int(compound_formula[i+1])
-                        i+=2
-                    else:
-                        if compound_formula[i+2].isnumeric():
-                            result[compound_formula[i]] = int(compound_formula[i+1]+compound_formula[i+2])
-                            i+=3
-                        else:
-                            result[compound_formula[i]] = int(compound_formula[i+1])
-                            i+=2
-                elif compound_formula[i+1].isnumeric() == False:
-                    if compound_formula[i+1].islower():
-                        if i+1 == len(compound_formula)-1:
-                            result[compound_formula[i]+compound_formula[i+1]] = 1
-                            i+=2
-                        elif compound_formula[i+2].isnumeric() == False:
-                            result[compound_formula[i]+compound_formula[i+1]] = 1
-                            i+=2
-                        elif compound_formula[i+2].isnumeric():
-                            if i+2 == len(compound_formula)-1:
-                                result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2])
-                                i+=3
-                            elif compound_formula[i+3].isnumeric() == False:
-                                result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2])
-                                i+=3
-                            elif compound_formula[i+3].isnumeric():
-                                result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2]+compound_formula[i+3])
-                                i+=4
-                    elif compound_formula[i+1].isupper():
-                        result[compound_formula[i]] = 1
-                        i+=1          
-    return result
 
+    #account for when compound_formula = "Cl4(OH)4"
+    #make substring of compound formula without the parenthasis elements
+    #iterate through compound formula first
+    #then iterate through the substring
+
+    
+    # while i < len(compound_formula):
+    #     if compound_formula[i] in result:
+    #         if compound_formula[i].isupper():
+    #             if i == len(compound_formula)-1:
+    #                 result[compound_formula[i]]+=1
+    #                 i+=1
+    #             elif compound_formula[i].isnumeric():
+    #                 if i + 1 == len(compound_formula)-1:
+    #                     result[compound_formula[i]] += int(compound_formula[i+1])
+    #                     i+=2
+    #                 else:
+    #                     if compound_formula[i+2].isnumeric():
+    #                         result[compound_formula[i]] += int(compound_formula[i+1]+compound_formula[i+2])
+    #                         i+=3
+    #                     else:
+    #                         result[compound_formula[i]] += int(compound_formula[i+1])
+    #                         i+=2
+    #             elif compound_formula[i].isnumeric() == False:
+    #                 if compound_formula[i].islower():
+    #                     if i+1 == len(compound_formula)-1:
+    #                         result[compound_formula[i]] += 1
+    #                         i+=2
+    #                     elif compound_formula[i+2].isnumeric() == False:
+    #                         result[compound_formula[i]] += 1
+    #                         i+=2
+    #                     elif compound_formula[i+2].isnumeric():
+    #                         if i+2 == len(compound_formula)-1:
+    #                             result[compound_formula[i]] += int(compound_formula[i+2])
+    #                             i+=3
+    #                         elif compound_formula[i+3].isnumeric() == False:
+    #                             result[compound_formula[i]] += int(compound_formula[i+2])
+    #                             i+=3
+    #                         elif compound_formula[i+3].isnumeric():
+    #                             result[compound_formula[i]] += int(compound_formula[i+2]+compound_formula[i+3])
+    #                             i+=4
+    #                 elif compound_formula[i+1].isupper():
+    #                     result[compound_formula[i]] += 1
+    #                     i+=1          
+    #     else: 
+    #         if compound_formula[i].isupper():
+    #             if i == len(compound_formula)-1:
+    #                 result[compound_formula[i]]=1
+    #                 i+=1
+    #             elif compound_formula[i+1].isnumeric():
+    #                 if i + 1 == len(compound_formula)-1:
+    #                     result[compound_formula[i]] = int(compound_formula[i+1])
+    #                     i+=2
+    #                 else:
+    #                     if compound_formula[i+2].isnumeric():
+    #                         result[compound_formula[i]] = int(compound_formula[i+1]+compound_formula[i+2])
+    #                         i+=3
+    #                     else:
+    #                         result[compound_formula[i]] = int(compound_formula[i+1])
+    #                         i+=2
+    #             elif compound_formula[i+1].isnumeric() == False:
+    #                 if compound_formula[i+1].islower():
+    #                     if i+1 == len(compound_formula)-1:
+    #                         result[compound_formula[i]+compound_formula[i+1]] = 1
+    #                         i+=2
+    #                     elif compound_formula[i+2].isnumeric() == False:
+    #                         result[compound_formula[i]+compound_formula[i+1]] = 1
+    #                         i+=2
+    #                     elif compound_formula[i+2].isnumeric():
+    #                         if i+2 == len(compound_formula)-1:
+    #                             result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2])
+    #                             i+=3
+    #                         elif compound_formula[i+3].isnumeric() == False:
+    #                             result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2])
+    #                             i+=3
+    #                         elif compound_formula[i+3].isnumeric():
+    #                             result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2]+compound_formula[i+3])
+    #                             i+=4
+    #                 elif compound_formula[i+1].isupper():
+    #                     result[compound_formula[i]] = 1
+    #                     i+=1          
+
+
+
+
+
+
+
+    # while i < len(compound_formula):
+    #     if compound_formula[i] in result:
+    #         if compound_formula[i].isupper():
+    #             if i == len(compound_formula)-1:
+    #                 result[compound_formula[i]]+=1
+    #                 i+=1
+    #             elif compound_formula[i].isnumeric():
+    #                 if i + 1 == len(compound_formula)-1:
+    #                     result[compound_formula[i]] += int(compound_formula[i+1])
+    #                     i+=2
+    #                 else:
+    #                     if compound_formula[i+2].isnumeric():
+    #                         result[compound_formula[i]] += int(compound_formula[i+1]+compound_formula[i+2])
+    #                         i+=3
+    #                     else:
+    #                         result[compound_formula[i]] += int(compound_formula[i+1])
+    #                         i+=2
+    #             elif compound_formula[i].isnumeric() == False:
+    #                 if compound_formula[i].islower():
+    #                     if i+1 == len(compound_formula)-1:
+    #                         result[compound_formula[i]] += 1
+    #                         i+=2
+    #                     elif compound_formula[i+2].isnumeric() == False:
+    #                         result[compound_formula[i]] += 1
+    #                         i+=2
+    #                     elif compound_formula[i+2].isnumeric():
+    #                         if i+2 == len(compound_formula)-1:
+    #                             result[compound_formula[i]] += int(compound_formula[i+2])
+    #                             i+=3
+    #                         elif compound_formula[i+3].isnumeric() == False:
+    #                             result[compound_formula[i]] += int(compound_formula[i+2])
+    #                             i+=3
+    #                         elif compound_formula[i+3].isnumeric():
+    #                             result[compound_formula[i]] += int(compound_formula[i+2]+compound_formula[i+3])
+    #                             i+=4
+    #                 elif compound_formula[i+1].isupper():
+    #                     result[compound_formula[i]] += 1
+    #                     i+=1   
+    #     elif compound_formula[i] == "(":
+    #         x = compound_formula.index(")", i)
+    #         inPar = compound_formula[i:x+1]
+    #         if compound_formula[x].isnumeric():
+    #             if compound_formula[x+2].isnumeric():
+    #                 y = int(compound_formula[x+1] + compound_formula[x+2])
+    #             else:
+    #                 y = int(compound_formula[x+1])
+    #         else:
+    #             y=1
+            
+
+    #         j=0
+    #         while j < len(inPar):
+    #             if inPar[j] in result:
+    #                 if inPar[j].isupper():
+    #                     if j == len(inPar)-1:
+    #                         result[inPar[j]]+=y
+    #                         j+=1
+    #                     elif inPar[j].isnumeric():
+    #                         if j + 1 == len(inPar)-1:
+    #                             result[inPar[j]] += int(inPar[j+1])*y
+    #                             j+=2
+    #                         else:
+    #                             if inPar[j+2].isnumeric():
+    #                                 result[inPar[j]] += int(inPar[j+1]+inPar[j+2])*y
+    #                                 j+=3
+    #                             else:
+    #                                 result[inPar[j]] += int(inPar[j+1])*y
+    #                                 j+=2
+    #                     elif inPar[j].isnumeric() == False:
+    #                         if inPar[j].islower():
+    #                             if j+1 == len(inPar)-1:
+    #                                 result[inPar[j]] += 1*y
+    #                                 j+=2
+    #                             elif inPar[j+2].isnumeric() == False:
+    #                                 result[inPar[j]] += y
+    #                                 j+=2
+    #                             elif inPar[j+2].isnumeric():
+    #                                 if j+2 == len(inPar)-1:
+    #                                     result[inPar[j]] += int(inPar[j+2])*y
+    #                                     j+=3
+    #                                 elif inPar[j+3].isnumeric() == False:
+    #                                     result[inPar[j]] += int(inPar[j+2])*y
+    #                                     j+=3
+    #                                 elif inPar[j+3].isnumeric():
+    #                                     result[inPar[j]] += int(inPar[j+2]+inPar[j+3])*y
+    #                                     j+=4
+    #                     elif inPar[j+1].isupper():
+    #                         result[inPar[j]] += y
+    #                         j+=1   
+    #             else:
+    #                 if inPar[j].isupper():
+    #                     if j == len(inPar)-1:
+    #                         result[inPar[j]]=y
+    #                         j+=1
+    #                     elif inPar[j].isnumeric():
+    #                         if j + 1 == len(inPar)-1:
+    #                             result[inPar[j]] = int(inPar[j+1])*y
+    #                             j+=2
+    #                         else:
+    #                             if inPar[j+2].isnumeric():
+    #                                 result[inPar[j]] = int(inPar[j+1]+inPar[j+2])*y
+    #                                 j+=3
+    #                             else:
+    #                                 result[inPar[j]] = int(inPar[j+1])*y
+    #                                 j+=2
+    #                     elif inPar[j].isnumeric() == False:
+    #                         if inPar[j].islower():
+    #                             if j+1 == len(inPar)-1:
+    #                                 result[inPar[j]] = 1*y
+    #                                 j+=2
+    #                             elif inPar[j+2].isnumeric() == False:
+    #                                 result[inPar[j]] = y
+    #                                 j+=2
+    #                             elif inPar[j+2].isnumeric():
+    #                                 if j+2 == len(inPar)-1:
+    #                                     result[inPar[j]] = int(inPar[j+2])*y
+    #                                     j+=3
+    #                                 elif inPar[j+3].isnumeric() == False:
+    #                                     result[inPar[j]] = int(inPar[j+2])*y
+    #                                     j+=3
+    #                                 elif inPar[j+3].isnumeric():
+    #                                     result[inPar[j]] = int(inPar[j+2]+inPar[j+3])*y
+    #                                     j+=4
+    #                     elif inPar[j+1].isupper():
+    #                         result[inPar[j]] = y
+    #                         j+=1
+    #         i+= (2+len(inPar)+len(str(y)))
+    #     else: 
+    #         if compound_formula[i].isupper():
+    #             if i == len(compound_formula)-1:
+    #                 result[compound_formula[i]]=1
+    #                 i+=1
+    #             elif compound_formula[i+1].isnumeric():
+    #                 if i + 1 == len(compound_formula)-1:
+    #                     result[compound_formula[i]] = int(compound_formula[i+1])
+    #                     i+=2
+    #                 else:
+    #                     if compound_formula[i+2].isnumeric():
+    #                         result[compound_formula[i]] = int(compound_formula[i+1]+compound_formula[i+2])
+    #                         i+=3
+    #                     else:
+    #                         result[compound_formula[i]] = int(compound_formula[i+1])
+    #                         i+=2
+    #             elif compound_formula[i+1].isnumeric() == False:
+    #                 if compound_formula[i+1].islower():
+    #                     if i+1 == len(compound_formula)-1:
+    #                         result[compound_formula[i]+compound_formula[i+1]] = 1
+    #                         i+=2
+    #                     elif compound_formula[i+2].isnumeric() == False:
+    #                         result[compound_formula[i]+compound_formula[i+1]] = 1
+    #                         i+=2
+    #                     elif compound_formula[i+2].isnumeric():
+    #                         if i+2 == len(compound_formula)-1:
+    #                             result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2])
+    #                             i+=3
+    #                         elif compound_formula[i+3].isnumeric() == False:
+    #                             result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2])
+    #                             i+=3
+    #                         elif compound_formula[i+3].isnumeric():
+    #                             result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2]+compound_formula[i+3])
+    #                             i+=4
+    #                 elif compound_formula[i+1].isupper():
+    #                     result[compound_formula[i]] = 1
+    #                     i+=1      
+
+    x = []
+    with_par = []
+    while len(compound_formula) > 0:
+        print( "start "+compound_formula)
+        i = 0
+        y=""
+        if compound_formula[0] == "(":
+            parAndMult = ""
+            endPar = compound_formula.find(")")
+            if endPar + 1 == len(compound_formula) - 1:
+                parAndMult += compound_formula
+            elif compound_formula[endPar + 2].isnumeric():
+                if endPar + 2 == len(compound_formula) - 1:
+                    parAndMult +=compound_formula
+                else:
+                    parAndMult += compound_formula[0: endPar + 3]
+            else:
+                parAndMult += compound_formula[0: endPar + 2]
+            y = parAndMult
+            x.append(y)
+            compound_formula = compound_formula[compound_formula.find(parAndMult)+len(parAndMult):]
+          
+        elif len(compound_formula) == 1:
+            y = compound_formula[0]
+            x.append(y)
+            compound_formula = ""
+        elif compound_formula[0].isupper() and (compound_formula[1].isupper() or compound_formula[1] == "("):
+            y = compound_formula[0]
+            x.append(y)
+            compound_formula = compound_formula[1:]
+        else:
+            y+=compound_formula[0]
+            i+=1
+            switch = True
+            while switch:
+                if i == len(compound_formula)-1: #and compound_formula[i].isnumeric():
+                    y+=compound_formula[i]
+                    switch = False
+                elif compound_formula[i]=="(" or compound_formula[i].isupper():
+                    switch = False
+                else:
+                    y+=compound_formula[i]
+                    i+=1
+            x.append(y)
+            compound_formula = compound_formula[compound_formula.find(y)+len(y):]##
+            print("end "+compound_formula)
+
+    # for i in x:
+    #     elem = ""
+    #     for j in range(len(i)):
+    #         if i[j].isnumeric()==False:
+
+            
+            
+
+
+
+    return x
+
+print(mol_form("CH3(NO3)5"))
 ######################################################
 # PART 2 - Complete the function below that takes two 
 #          tuples representing one side of a

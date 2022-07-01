@@ -10,3 +10,6 @@ class geteqn(FlaskForm):
         validators=[DataRequired()])
 
     equationCheck = SubmitField(label='submit')
+
+class backToMainPg(FlaskForm):
+    backToMain = SubmitField(label = 'Check a different equation')
