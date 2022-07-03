@@ -1,7 +1,14 @@
 :root {
-    --green: #00FF00;
+    --royalBlueDark: #3951A5;
     --white: #FFFFFF;
     --black: #000000;
+    --ceruleanForest: #659EC9;
+    --shadowBlue: #7990B5;
+    --coolGrey: #8F9ABF;
+    --violetBlue: #3951A5;
+    --lightPeriwinkle: #D4D9F1;
+    --midnightBlue: #1E1576;
+    --alabaster: #ECEBE4;
 }
 
 body {
@@ -19,17 +26,17 @@ li {
 }
 
 .light-theme {
-    --bg: var(--green);
-    --fontColor: var(--black);
-    --btnBg: var(--black);
-    --btnFontColor: var(--white);
+    --bg: var(--lightPeriwinkle);
+    --fontColor: var(--royalBlueDark);
+    --btnBg: var(--ceruleanForest);
+    --btnFontColor: var(--royalBlueDark);
 }
 
 .dark-theme {
-    --bg: var(--black);
-    --fontColor: var(--green);
-    --btnBg: var(--white);
-    --btnFontColor: var(--black);
+    --bg: var(--midnightBlue);
+    --fontColor: var(--alabaster);
+    --btnBg: var(--coolGrey);
+    --btnFontColor: var(--alabaster);
 }
 
 .btn {
@@ -43,13 +50,13 @@ li {
     color: var(--btnFontColor);
     background-color: var(--btnBg);
 }
-.checker {
+.back_home {
     position: absolute;
-    top: 160px;
-    left: 300px;
+    top: 20px;
+    left: 700px;
     height: 50px;
-    width: 100px;
-    border-radius: 20%;
+    width: 150px;
+    border-radius: 50%;
     border: none;
     color: var(--btnFontColor);
     background-color: var(--btnBg);

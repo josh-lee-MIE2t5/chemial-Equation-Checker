@@ -1,0 +1,35 @@
+{% extends "layoutDark.html" %}
+
+{% block content %}
+
+    {% if headerOne %}
+    <h1> {{ headerOne }} </h1>
+    {% else %}
+    <h1>Equation Checker</h1>
+    {% endif %}
+
+    <div>
+        <button id="themeSwitch" class="btn">Light</button>
+    </div>
+
+    
+    <h2>Enter your equation to be checked</h2>
+    <form action="" method="POST">
+        <p>
+            {{form.reactantsStr.label}}<br>
+            {{form.reactantsStr(size=100)}}
+        </p>
+        <p>
+            {{form.productsStr.label}}<br>
+            {{form.productsStr(size=100)}}
+        </p>
+
+        <p>{{form.equationCheck}}</p>
+    
+    </form>
+    <script src="{{ url_for('static', filename='mainDark.js') }}"></script>
+    <noscript>You need to enable JavaScript to view the full site</noscript>
+    {% endblock content %}
+
+
+
