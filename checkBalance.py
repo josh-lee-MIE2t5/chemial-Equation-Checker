@@ -1,13 +1,3 @@
-#####################################################
-# APS106 Winter 2022 - Lab 7 - Chemical Eqn Checker #
-#####################################################
-
-######################################################
-# PART 1 - Complete the function below to deocompose
-#          a compound formula written as a string
-#          in a dictionary
-######################################################
-
 def mol_form(compound_formula):
     """(str) -> dictionary
     When passed a string of the compound formula, returns a dictionary 
@@ -19,94 +9,170 @@ def mol_form(compound_formula):
     {'C': 1, 'H': 4}
     """
     # TODO your code here
-    i = 0
+  
     result = {}
-    while i < len(compound_formula):
-        if compound_formula[i] in result:
-            if compound_formula[i].isupper():
-                if i == len(compound_formula)-1:
-                    result[compound_formula[i]]+=1
-                    i+=1
-                elif compound_formula[i].isnumeric():
-                    if i + 1 == len(compound_formula)-1:
-                        result[compound_formula[i]] += int(compound_formula[i+1])
-                        i+=2
+    x = []
+    while len(compound_formula) > 0:
+        #print( "start "+compound_formula)
+        y=""
+        if compound_formula[0] == "(":
+            inPar = ""
+            parAndMult = ""
+            Mult = ""
+            endPar = compound_formula.find(")")
+            if endPar + 1 == len(compound_formula) - 1:
+                Mult += compound_formula[-1]
+                inPar += compound_formula[1:-2]
+                parAndMult += compound_formula
+            elif compound_formula[endPar + 2].isnumeric():
+                if endPar + 2 == len(compound_formula) - 1:
+                    parAndMult +=compound_formula
+                    Mult += compound_formula[-2:]
+                    inPar += compound_formula[1:-3]
+                else:
+                    parAndMult += compound_formula[0: endPar + 3]
+                    Mult += parAndMult[-2:]
+                    inPar = parAndMult[1:-3]
+            else:
+                parAndMult += compound_formula[0: endPar + 2]
+                Mult += parAndMult[-1]
+                inPar += parAndMult[1:-2]            
+            distributed = ""
+            while len(inPar)>0:
+                j = len(inPar)
+                a = ""
+                z = ""
+                if len(inPar)==1:
+                    z="1"
+                    a = inPar
+                    inPar = ""
+                elif inPar[1].islower():
+                    if len(inPar)==2:
+                        z = "1"
+                        a = inPar
+                        inPar == ""
                     else:
-                        if compound_formula[i+2].isnumeric():
-                            result[compound_formula[i]] += int(compound_formula[i+1]+compound_formula[i+2])
-                            i+=3
+                        if inPar[2].isnumeric():
+                            if len(inPar)==3:
+                                a =  inPar[0:2]
+                                z = inPar[2]
+                                inPar = ""
+                            elif inPar[3].isnumeric():
+                                if len(inPar)==4:
+                                    a = inPar[0:2]
+                                    z = inPar[2:]
+                                    inPar = ""
+                                else:
+                                    a = inPar[0:2]
+                                    z = inPar[2:4]
+                                    inPar = inPar[inPar.find(a+z)+len(a+z):]
+                            else:
+                                a = inPar[0:2]
+                                z = inPar[2]
+                                inPar = inPar[inPar.find(a+z)+len(a+z):]
                         else:
-                            result[compound_formula[i]] += int(compound_formula[i+1])
-                            i+=2
-                elif compound_formula[i].isnumeric() == False:
-                    if compound_formula[i].islower():
-                        if i+1 == len(compound_formula)-1:
-                            result[compound_formula[i]] += 1
-                            i+=2
-                        elif compound_formula[i+2].isnumeric() == False:
-                            result[compound_formula[i]] += 1
-                            i+=2
-                        elif compound_formula[i+2].isnumeric():
-                            if i+2 == len(compound_formula)-1:
-                                result[compound_formula[i]] += int(compound_formula[i+2])
-                                i+=3
-                            elif compound_formula[i+3].isnumeric() == False:
-                                result[compound_formula[i]] += int(compound_formula[i+2])
-                                i+=3
-                            elif compound_formula[i+3].isnumeric():
-                                result[compound_formula[i]] += int(compound_formula[i+2]+compound_formula[i+3])
-                                i+=4
-                    elif compound_formula[i+1].isupper():
-                        result[compound_formula[i]] += 1
-                        i+=1          
-        else: 
-            if compound_formula[i].isupper():
-                if i == len(compound_formula)-1:
-                    result[compound_formula[i]]=1
-                    i+=1
-                elif compound_formula[i+1].isnumeric():
-                    if i + 1 == len(compound_formula)-1:
-                        result[compound_formula[i]] = int(compound_formula[i+1])
-                        i+=2
+                            a = inPar[0:2]
+                            z ="1"
+                            inPar = inPar[2:]
+                elif inPar[1].isnumeric():
+                    if len(inPar)==2:
+                        z = inPar[1]
+                        a = inPar[0]
+                        inPar = ""
+                    elif inPar[2].isnumeric:
+                        if len(inPar)==3:
+                            a = inPar[0]
+                            z = inPar[1:]
+                            inPar =""
+                        else:
+                            a = inPar[0]
+                            z = inPar[1:3]
+                            inPar = inPar[inPar.find(a+z)+len(a+z):]
                     else:
-                        if compound_formula[i+2].isnumeric():
-                            result[compound_formula[i]] = int(compound_formula[i+1]+compound_formula[i+2])
-                            i+=3
+                        z = inPar[1]
+                        a = inPar[0]
+                        inPar = inPar[2:]
+                else:
+                    z = "1"
+                    a = inPar[0]
+                    inPar = inPar[1:]
+                m = str(int(z)*int(Mult))
+                distributed += a + m
+                k = len(inPar)
+
+            compound_formula = compound_formula[compound_formula.find(parAndMult)+len(parAndMult):]
+            compound_formula = compound_formula + distributed 
+        elif len(compound_formula) == 1:
+            y = compound_formula[0]
+            x.append(y)
+            compound_formula = ""
+        elif compound_formula[0].isupper() and (compound_formula[1].isupper() or compound_formula[1] == "("):
+            y = compound_formula[0]
+            x.append(y)
+            compound_formula = compound_formula[1:]
+        else:
+            i = 1
+            y+=compound_formula[0]
+            switch = True
+            while switch:
+                if i > len(compound_formula)-1: #and compound_formula[i].isnumeric():
+                    #y+=compound_formula[i]
+                    switch = False
+                elif compound_formula[i]=="(" or compound_formula[i].isupper():
+                    switch = False
+                elif compound_formula[i].islower():
+                    if compound_formula[i].isnumeric():
+                        if compound_formula[1].isnumeric():
+                            y+=compound_formula[i]
+                            i+=1
                         else:
-                            result[compound_formula[i]] = int(compound_formula[i+1])
-                            i+=2
-                elif compound_formula[i+1].isnumeric() == False:
-                    if compound_formula[i+1].islower():
-                        if i+1 == len(compound_formula)-1:
-                            result[compound_formula[i]+compound_formula[i+1]] = 1
-                            i+=2
-                        elif compound_formula[i+2].isnumeric() == False:
-                            result[compound_formula[i]+compound_formula[i+1]] = 1
-                            i+=2
-                        elif compound_formula[i+2].isnumeric():
-                            if i+2 == len(compound_formula)-1:
-                                result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2])
-                                i+=3
-                            elif compound_formula[i+3].isnumeric() == False:
-                                result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2])
-                                i+=3
-                            elif compound_formula[i+3].isnumeric():
-                                result[compound_formula[i]+compound_formula[i+1]] = int(compound_formula[i+2]+compound_formula[i+3])
-                                i+=4
-                    elif compound_formula[i+1].isupper():
-                        result[compound_formula[i]] = 1
-                        i+=1          
+                            y+=compound_formula[i]
+                            i+=1
+                    else:
+                        y+=compound_formula[i]
+                        i+=1
+                else:
+                    y+=compound_formula[i]
+                    i+=1     
+            x.append(y)
+            compound_formula = compound_formula[compound_formula.find(y)+len(y):]
+            #print("end "+compound_formula)
+    # print(x)
+    for i in x:
+        if len(i) == 1:
+            if i in result:
+                result[i] += 1
+            else:
+                result[i] = 1
+        elif len(i) == 2:
+            if i[1].isnumeric():
+                if i[0] in result:
+                    result[i[0]] += int(i[1])
+                else:
+                    result[i[0]] = int(i[1])
+            else:
+                if i in result:
+                    result[i] += 1
+                else:
+                    result[i] = 1
+        elif len(i) == 3:
+            if i[1].isnumeric():
+                if i[0] in result:
+                    result[i[0]] += int(i[1:])
+                else:
+                    result[i[0]] = int(i[1:])
+            else:
+                if i[0:2] in result:
+                    result[i[0:2]] += int(i[2])
+                else:
+                    result[i[0:2]] = int(i[2])
+        else:
+            if i[0:2] in result:
+                result[i[0:2]] += int(i[2:])
+            else:
+                result[i[0:2]] = int(i[2:])
     return result
 
-######################################################
-# PART 2 - Complete the function below that takes two 
-#          tuples representing one side of a
-#          chemical equation and returns a dictionary
-#          with the elements as keys and the total
-#          number of atoms in the entire expression
-#          as values.
-######################################################
-    
 def expr_form(expr_coeffs,expr_molecs):
     """
     (tuple (of ints), tuple (of dictionaries)) -> dictionary
@@ -177,10 +243,6 @@ def find_unbalanced_atoms(reactant_atoms, product_atoms):
             atoms_not_balanced.add(atom)     
     return atoms_not_balanced
 
-########################################################
-# PART 4 - Check if a chemical equation represented by
-#          two nested tuples is balanced
-########################################################
 
 def check_eqn_balance(reactants,products):
     """

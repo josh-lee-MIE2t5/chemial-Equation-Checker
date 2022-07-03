@@ -1,0 +1,56 @@
+{% extends "layoutLight.html" %}
+
+{% block content %}
+<div>
+    <button class="back_home">Check another Equation</button>
+</div>
+
+<h2>Your reaction was
+    {{reactantSide}} ---> {{productSide}}
+
+</h2>
+
+
+<ul>
+    {% if data %}
+        {% if last %}
+            {% if secondLast %}
+            <p>The following elements are not balanced: <br>
+                {% for x in data %}
+                    {{ x }}, 
+                {% endfor %}
+                {% for x in secondLast %}
+                {{ x }}, and 
+                {% endfor %}
+                {% for x in last %}
+                {{ x }} 
+                {% endfor %}
+            </p>
+            {% else %}
+                <p>The following elements are not balanced: <br>
+                    {% for x in data %}
+                    {{ x }}, and 
+                    {% endfor %} 
+                    {% for x in last %}
+                    {{ x }} 
+                    {% endfor %}
+                </p>
+            {% endif %}
+        {% else %}
+        <p>The following elements are not balanced: <br>
+            {% for x in data %}
+            {{ x }}
+            {% endfor %} 
+        </p>
+        {% endif %}
+    {% else %}
+        <p>Your chemical equation is balanced.</p>
+    {% endif %}
+</ul>
+
+
+<script src="{{ url_for('static', filename='resultPgLight.js') }}"></script>
+
+<noscript>You need to enable JavaScript to view the full site</noscript>
+
+{% endblock content %}

@@ -1,6 +1,10 @@
-{% extends "layout.html" %}
+{% extends "layoutDark.html" %}
 
 {% block content %}
+<div>
+    <button class="back_home">Check another equation</button>
+</div>
+
 <h2>Your reaction was
     {{reactantSide}} ---> {{productSide}}
 
@@ -39,9 +43,12 @@
         {% endif %}
     {% else %}
         <p>Your chemical equation is balanced.</p>
-    {% endif%}
+    {% endif %}
 </ul>
 
 
+<script src="{{ url_for('static', filename='resultPgDark.js') }}"></script>
+
+<noscript>You need to enable JavaScript to view the full site</noscript>
 
 {% endblock content %}
