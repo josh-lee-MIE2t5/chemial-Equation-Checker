@@ -1,32 +1,43 @@
-{% extends "layoutLight.html" %}
-
-{% block content %}
-
-    {% if headerOne %}
-    <h1> {{ headerOne }} </h1>
-    {% else %}
-    <h1>Equation Checker</h1>
-    {% endif %}
-
-    <div>
-        <button id="themeSwitch" class="btn">Dark</button>
+{% extends "layoutLight.html" %} {% block content %}
+<section
+  id="headingAndThemeChg"
+  class="container width-50% d-content-center my-4"
+>
+  <div class="row">
+    <div
+      class="col-8 col-xl-10 text-center d-flex justify-content-end justify-content-xl-center px-0"
+    >
+      <h1 class="display-1 my-2">Equation Checker</h1>
     </div>
+    <div
+      class="col-4 col-xl-2 d-flex justify-content-center justify-content-xl-start align-items-center px-0"
+    >
+      <button id="themeSwitch" class="btn btn-danger">Dark</button>
+    </div>
+  </div>
+</section>
+<hr />
+<section id="inputForm" class="container my-6 width-50%">
+  <h2 class="display-5">Enter your equation to be checked</h2>
+  <form action="" method="POST" class="">
+    <div class="form-row">
+      <div class="col-6">
+        {{form.reactantsStr.label(class_="form-label")}}
+        {{form.reactantsStr(class_="form-control")}}
+      </div>
+      <div class="col-6">
+        {{form.productsStr.label(class_="form-label")}}
+        {{form.productsStr(class_="form-control")}}
+      </div>
+    </div>
+    <div class="form-row my-4">
+      <div class="col-12 d-flex justify-content-end">
+        {{form.equationCheck(class_="btn btn-danger")}}
+      </div>
+    </div>
+  </form>
+</section>
 
-    
-    <h2>Enter your equation to be checked</h2>
-    <form action="" method="POST">
-        <p>
-            {{form.reactantsStr.label}}<br>
-            {{form.reactantsStr(size=100)}}
-        </p>
-        <p>
-            {{form.productsStr.label}}<br>
-            {{form.productsStr(size=100)}}
-        </p>
-
-        <p>{{form.equationCheck}}</p>
-    
-    </form>
-    <script src="{{ url_for('static', filename='mainLight.js') }}"></script>
-    <noscript>You need to enable JavaScript to view the full site</noscript>
-    {% endblock content %}
+<script src="{{ url_for('static', filename='mainLight.js') }}"></script>
+<noscript>You need to enable JavaScript to view the full site</noscript>
+{% endblock content %}
