@@ -1,53 +1,54 @@
-{% extends "layoutLight.html" %}
+{% extends "layoutLight.html" %} {% block content %}
+<section
+  id="headingAndThemeChg"
+  class="container width-50% d-content-center my-4"
+>
+  <div class="row">
+    <div
+      class="col-8 col-xl-10 text-center d-flex justify-content-end justify-content-xl-center px-0"
+    >
+      <h1 class="display-1 my-2">Equation Checker</h1>
+    </div>
+    <div
+      class="col-4 col-xl-2 d-flex justify-content-center justify-content-xl-start align-items-center px-0"
+    >
+      <button id="backHome" class="btn btn-danger">
+        Check Another Equation
+      </button>
+    </div>
+  </div>
+</section>
+<hr />
 
-{% block content %}
-<div>
-    <button class="back_home">Check another Equation</button>
-</div>
+<section id="inputSummary" class="container my-6 width-50%">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 d-flex justify-content-center">
+      <h2 class="display-5">
+        Your reaction was
+        <span id="resultReacOrProd">{{reactantSide}}</span> --->
+        <span id="resultReacOrProd">{{productSide}}</span>
+      </h2>
+    </div>
+  </div>
 
-<h2>Your reaction was
-    {{reactantSide}} ---> {{productSide}}
-
-</h2>
-
-
-<ul>
-    {% if data %}
-        {% if last %}
-            {% if secondLast %}
-            <p>The following elements are not balanced: <br>
-                {% for x in data %}
-                    {{ x }}, 
-                {% endfor %}
-                {% for x in secondLast %}
-                {{ x }}, and 
-                {% endfor %}
-                {% for x in last %}
-                {{ x }} 
-                {% endfor %}
-            </p>
-            {% else %}
-                <p>The following elements are not balanced: <br>
-                    {% for x in data %}
-                    {{ x }}, and 
-                    {% endfor %} 
-                    {% for x in last %}
-                    {{ x }} 
-                    {% endfor %}
-                </p>
-            {% endif %}
-        {% else %}
-        <p>The following elements are not balanced: <br>
-            {% for x in data %}
-            {{ x }}
-            {% endfor %} 
-        </p>
-        {% endif %}
-    {% else %}
-        <p>Your chemical equation is balanced.</p>
-    {% endif %}
-</ul>
-
+  <div class="row d-flex justify-content-center text-center">
+    {% if data %} {% if last %} {% if secondLast %}
+    <p id="unbalancedElems">
+      The following elements are not balanced: <br />
+      {% for x in data %} <span class="elemOnResult">{{ x }}</span>, {% endfor
+      %} {% for x in secondLast %} <span class="elemOnResult">{{ x }}</span>,
+      and {% endfor %} {% for x in last %}
+      <span class="elemOnResult">{{ x }}</span> {% endfor %} {% else %} The
+      following elements are not balanced: <br />
+      {% for x in data %} <span class="elemOnResult">{{ x }}</span>, and {%
+      endfor %} {% for x in last %} <span class="elemOnResult">{{ x }}</span> {%
+      endfor %} {% endif %} {% else %} The following elements are not balanced:
+      <br />
+      {% for x in data %} <span class="elemOnResult">{{ x }}</span> {% endfor %}
+      {% endif %} {% else %} Your chemical equation is balanced. {% endif %}
+    </p>
+  </div>
+</section>
 
 <script src="{{ url_for('static', filename='resultPgLight.js') }}"></script>
 

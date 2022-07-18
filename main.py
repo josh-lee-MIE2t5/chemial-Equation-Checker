@@ -15,7 +15,7 @@ unbalanced_Elements = []
 secondLast = []
 last = []
 
-    
+
 @app.route("/Dark", methods=['GET', 'POST'])
 def mainpgDark():
     form = geteqn()
@@ -102,22 +102,23 @@ def mainpgDark():
         last = placeholderLast
         secondLast = placeholderSecondLast
 
-        C=' '
-        D=' '
-        E=' '
+        C = ' '
+        D = ' '
+        E = ' '
         for i in unbalanced_Elements:
-            C+=i
+            C += i
         for i in last:
-            D+=i
+            D += i
         for i in secondLast:
-            E+=i
+            E += i
 
         print(C)
         print(D)
         print(E)
-        return redirect(url_for('resultDark', a = reactsStrNoSpaces, b = prodsStrNoSpaces, c = C, d = D, e = E))
-    
+        return redirect(url_for('resultDark', a=reactsStrNoSpaces, b=prodsStrNoSpaces, c=C, d=D, e=E))
+
     return render_template('mainDark.html', form=form)
+
 
 @app.route("/", methods=['GET', 'POST'])
 def mainpgLight():
@@ -205,43 +206,46 @@ def mainpgLight():
         last = placeholderLast
         secondLast = placeholderSecondLast
 
-        C=' '
-        D=' '
-        E=' '
+        C = ' '
+        D = ' '
+        E = ' '
         for i in unbalanced_Elements:
-            C+=i
+            C += i
         for i in last:
-            D+=i
+            D += i
         for i in secondLast:
-            E+=i
+            E += i
 
         print(C)
         print(D)
         print(E)
-        return redirect(url_for('resultLight', a = reactsStrNoSpaces, b = prodsStrNoSpaces, c = C, d = D, e = E))
-    
+        return redirect(url_for('resultLight', a=reactsStrNoSpaces, b=prodsStrNoSpaces, c=C, d=D, e=E))
+
     return render_template('mainLight.html', form=form)
+
 
 @app.route("/resultLight/<a>/<b>/<c>/<d>/<e>", methods=['GET', 'POST'])
 def resultLight(a, b, c, d, e):
     data = prepareData(c)
     last = prepareLast(d)
     secondLast = prepareSecondLast(e)
-    return render_template('resultPgLight.html', reactantSide=a, productSide=b, data=data, last=last, secondLast=secondLast, title = "result")
+    return render_template('resultPgLight.html', reactantSide=a, productSide=b, data=data, last=last, secondLast=secondLast, title="result")
+
 
 @app.route("/resultDark/<a>/<b>/<c>/<d>/<e>", methods=['GET', 'POST'])
 def resultDark(a, b, c, d, e):
     data = prepareData(c)
     last = prepareLast(d)
     secondLast = prepareSecondLast(e)
-    return render_template('resultPgDark.html', reactantSide=a, productSide=b, data=data, last=last, secondLast=secondLast, title = "result")
+    return render_template('resultPgDark.html', reactantSide=a, productSide=b, data=data, last=last, secondLast=secondLast, title="result")
+
 
 def prepareData(c):
-    data =[]
+    data = []
     c = c.replace(" ", "")
     lowerIndex = []
     if c != "":
-        i=0
+        i = 0
         if c.isupper():
             for i in c:
                 data.append(i)
@@ -256,6 +260,7 @@ def prepareData(c):
                 data.append(i)
     return data
 
+
 def prepareLast(d):
     last = []
     d = d.replace(" ", "")
@@ -263,12 +268,15 @@ def prepareLast(d):
         last.append(d)
     return last
 
+
 def prepareSecondLast(e):
 
-    secondLast=[]
+    secondLast = []
     e = e.replace(" ", "")
     if e != "":
         secondLast.append(e)
     return secondLast
+
+
 if __name__ == '__main__':
     app.run(debug=True)

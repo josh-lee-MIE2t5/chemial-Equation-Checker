@@ -11,12 +11,6 @@
     --alabaster: #ECEBE4;
 }
 
-body {
-    background: var(--bg);
-    color: var(--fontColor);
-    font-family: helvetica;
-}
-
 li {
     list-style: circle;
 }
@@ -26,38 +20,114 @@ li {
 }
 
 .light-theme {
-    --bg: var(--lightPeriwinkle);
-    --fontColor: var(--royalBlueDark);
-    --btnBg: var(--ceruleanForest);
-    --btnFontColor: var(--royalBlueDark);
+    background-color: #ffba08;
+    color: #d00000;
+    /* --btnBg: var(--ceruleanForest);
+    --btnFontColor: var(--royalBlueDark); */
 }
 
 .dark-theme {
-    --bg: var(--midnightBlue);
-    --fontColor: var(--alabaster);
-    --btnBg: var(--coolGrey);
-    --btnFontColor: var(--alabaster);
+    background-color: #00193b;
+    color: #00607a;
 }
 
-.btn {
-    position: absolute;
-    top: 20px;
-    left: 500px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    border: none;
-    color: var(--btnFontColor);
-    background-color: var(--btnBg);
+.dark-theme hr {
+    size: 1rem;
+    color: #00607a;
 }
-.back_home {
-    position: absolute;
-    top: 20px;
-    left: 700px;
-    height: 50px;
-    width: 150px;
-    border-radius: 50%;
-    border: none;
-    color: var(--btnFontColor);
-    background-color: var(--btnBg);
+
+.light-theme hr {
+    size: 1rem;
+    color: #d00000;
+}
+
+
+#inputForm h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-decoration: underline;
+}
+
+#inputForm label {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+    #headingAndThemeChg h1 {
+        font-size: 4rem;
+    }
+
+    #headingAndThemeChg #themeSwitch {
+        width: 6rem;
+        height: 3rem;
+    }
+
+    #headingAndThemeChg #backHome {
+        font-size: 0.6rem;
+        width: 6rem;
+        height: 3rem;
+    }
+
+    #inputSummary h2 {
+        font-size: 1.25rem;
+    }
+
+    #inputSummary #unbalancedElems {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+    #headingAndThemeChg h1 {
+        font-size: 2.5rem;
+    }
+
+    #headingAndThemeChg #themeSwitch {
+        width: 4rem;
+        height: 3rem;
+    }
+
+    #inputSummary h2 {
+        font-size: 1rem;
+    }
+
+    #inputSummary #unbalancedElems {
+        font-size: 0.75rem;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 485px) {
+    #inputSummary h2 {
+        font-size: 0.5rem;
+    }
+
+    #inputSummary #unbalancedElems {
+        font-size: 0.5rem;
+    }
+}
+
+#themeSwitch {
+    height: 4rem;
+    width: 8rem;
+}
+
+.light-theme #resultReacOrProd {
+    color: #ec2e09;
+    font-weight: bolder;
+}
+
+.light-theme .elemOnResult {
+    color: #ec2e09;
+    font-weight: 700;
+}
+
+.dark-theme #resultReacOrProd {
+    color: #13617c;
+    font-weight: bolder;
+}
+
+.dark-theme .elemOnResult {
+    color: #13617c;
+    font-weight: 700;
 }
